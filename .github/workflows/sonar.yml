@@ -31,8 +31,6 @@ jobs:
           -DCROSS_COMPILE32=0 -DBUNDLED_LIBS=1 -DINSTALL_EXTRA=0
           -DFEATURE_SSL=0 -DFEATURE_AUTH=0 -DFEATURE_CURL=0
           -DCMAKE_EXPORT_COMPILE_COMMANDS=true
-      - name: Install Build Wrapper
-        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v5
       - name: Look around
         run: |
           pwd
@@ -48,3 +46,4 @@ jobs:
             --define sonar.cfamily.compile-commands="./build/compile_commands.json"
             --define sonar.projectKey=necto_etlegacy
             --define sonar.organization=necto
+            --define sonar.exclusions=app/src/

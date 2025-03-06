@@ -30,17 +30,19 @@ jobs:
           -DINSTALL_DEFAULT_SHAREDIR=. -DINSTALL_DEFAULT_MODDIR=.
           -DCROSS_COMPILE32=0 -DBUNDLED_LIBS=1 -DINSTALL_EXTRA=0
           -DFEATURE_SSL=0 -DFEATURE_AUTH=0 -DFEATURE_CURL=0
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=true
       - name: Install Build Wrapper
         uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v5
-      - name: Run Build Wrapper
+      - name: Look around
         run: |
-          export PATH="${PWD}/cov-analysis-linux64/bin:${PATH}"
-          cd build
-          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} make
+          pwd
+          ls
+          ls *
+          find . -name compile_commands.json
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            --define sonar.cfamily.compile-commands="${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json"
+            --define sonar.cfamily.compile-commands="./compile_commands.json"

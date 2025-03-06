@@ -45,4 +45,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            --define sonar.cfamily.compile-commands="./compile_commands.json"
+            --define sonar.cfamily.compile-commands="./build/compile_commands.json"
+            --define sonar.projectKey=necto_etlegacy
+            --define sonar.organization=necto

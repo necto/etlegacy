@@ -49,4 +49,4 @@ jobs:
         if: failure()
         with:
           name: reproducer
-          path: /home/runner/work/etlegacy/sonar-cfamily-reproducer.tar.xz
+          path: /home/runner/work/etlegacy/etlegacy/sonar-cfamily-reproducer.tar.xz

@@ -31,12 +31,6 @@ jobs:
           -DCROSS_COMPILE32=0 -DBUNDLED_LIBS=1 -DINSTALL_EXTRA=0
           -DFEATURE_SSL=0 -DFEATURE_AUTH=0 -DFEATURE_CURL=0
           -DCMAKE_EXPORT_COMPILE_COMMANDS=true
-      - name: Look around
-        run: |
-          pwd
-          ls
-          ls *
-          find . -name compile_commands.json
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
@@ -47,3 +41,4 @@ jobs:
             --define sonar.projectKey=necto_etlegacy
             --define sonar.organization=necto
             --define sonar.soruces="src/"
+            --define sonar.exclusions="**/*.java"

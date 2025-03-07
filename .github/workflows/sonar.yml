@@ -44,3 +44,8 @@ jobs:
             --define sonar.projectKey=necto_etlegacy
             --define sonar.organization=necto
             --define sonar.sources="src/qcommon"
+            --define sonar.cfamily.reproducer="/home/runner/work/etlegacy/etlegacy/src/qcommon/dl_main_curl.c"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reproducer
+          path: /home/runner/work/etlegacy/sonar-cfamily-reproducer.tar.xz

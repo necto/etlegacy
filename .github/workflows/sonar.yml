@@ -31,6 +31,9 @@ jobs:
           -DCROSS_COMPILE32=0 -DBUNDLED_LIBS=1 -DINSTALL_EXTRA=0
           -DFEATURE_SSL=0 -DFEATURE_AUTH=0 -DFEATURE_CURL=0
           -DCMAKE_EXPORT_COMPILE_COMMANDS=true
+      - name: Hack Add entry for dl_main_curl
+        run: |
+          sed 's/dl_main_stubs/dl_main_curl/g' -i build/compile_commands.json
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
@@ -40,5 +43,5 @@ jobs:
             --define sonar.cfamily.compile-commands="./build/compile_commands.json"
             --define sonar.projectKey=necto_etlegacy
             --define sonar.organization=necto
-            --define sonar.soruces="src/"
+            --define sonar.soruces="src/qcommon"
             --define sonar.exclusions="**/*.java"

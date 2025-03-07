@@ -46,4 +46,4 @@ jobs:
             --define sonar.cfamily.compile-commands="./build/compile_commands.json"
             --define sonar.projectKey=necto_etlegacy
             --define sonar.organization=necto
-            --define sonar.exclusions="app/src/**"
+            --define sonar.soruces="src/"

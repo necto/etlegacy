@@ -844,3 +844,11 @@ void DL_DownloadLoop(void)
 		}
 	}
 }
+
+// TODO Here is one issue for you
+int div0(int x) {
+	if (x == 0) {
+
+	}
+	return 1 / x;
+}
